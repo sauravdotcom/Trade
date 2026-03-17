@@ -1,0 +1,341 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Space+Grotesk:wght@500;700&display=swap");
+
+:root {
+  --bg: #0b1020;
+  --panel: rgba(13, 25, 44, 0.72);
+  --panel-strong: #111f35;
+  --stroke: rgba(129, 150, 184, 0.24);
+  --text: #ecf2ff;
+  --muted: #9caec9;
+  --bull: #2dd4bf;
+  --bear: #ff6b6b;
+  --accent: #ffb347;
+  --shadow: 0 20px 60px rgba(4, 7, 16, 0.45);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(76, 175, 255, 0.18), transparent 38%),
+    radial-gradient(circle at 80% 10%, rgba(255, 179, 71, 0.2), transparent 30%),
+    radial-gradient(circle at 90% 80%, rgba(45, 212, 191, 0.14), transparent 35%),
+    var(--bg);
+  color: var(--text);
+  font-family: "Manrope", "Segoe UI", sans-serif;
+}
+
+.loading {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  font-size: 1.1rem;
+  color: var(--muted);
+}
+
+.dashboard-root {
+  width: min(1500px, 96vw);
+  margin: 0 auto;
+  padding: 28px 0 34px;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.symbol-toggle {
+  display: flex;
+  gap: 6px;
+  padding: 4px;
+  border-radius: 999px;
+  background: rgba(13, 25, 44, 0.75);
+  border: 1px solid var(--stroke);
+}
+
+.symbol-toggle button {
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  padding: 7px 10px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.symbol-toggle button.active {
+  background: color-mix(in srgb, var(--accent), transparent 20%);
+  color: #1b1304;
+}
+
+.dashboard-header h1 {
+  margin: 0;
+  font-size: clamp(1.5rem, 2.4vw, 2.3rem);
+  font-family: "Space Grotesk", "Manrope", sans-serif;
+  letter-spacing: 0.02em;
+}
+
+.dashboard-header p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.status {
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  border: 1px solid transparent;
+}
+
+.status.live {
+  color: #052c24;
+  background: var(--bull);
+}
+
+.status.stale {
+  color: #3d1111;
+  background: var(--bear);
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 320px 1fr 390px;
+  gap: 16px;
+}
+
+.left-panel,
+.right-panel,
+.center-panel {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+}
+
+.panel-card {
+  background: linear-gradient(155deg, rgba(19, 33, 56, 0.85), rgba(12, 24, 43, 0.9));
+  border: 1px solid var(--stroke);
+  border-radius: 16px;
+  padding: 14px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(9px);
+}
+
+.panel-title {
+  margin-bottom: 10px;
+  color: var(--muted);
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.11em;
+  font-weight: 700;
+}
+
+.metric-tile {
+  display: grid;
+  gap: 4px;
+  background: rgba(12, 24, 43, 0.5);
+  border-radius: 12px;
+  border: 1px solid var(--stroke);
+  padding: 10px;
+}
+
+.metric-label {
+  color: var(--muted);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.metric-value {
+  font-size: 1.1rem;
+}
+
+.metric-tile.bull {
+  border-color: color-mix(in srgb, var(--bull), transparent 55%);
+}
+
+.metric-tile.bear {
+  border-color: color-mix(in srgb, var(--bear), transparent 55%);
+}
+
+.heatmap-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  font-size: 0.82rem;
+  align-items: center;
+}
+
+.heatmap-grid.header {
+  color: var(--muted);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.heatmap-body {
+  display: grid;
+}
+
+.heatmap-grid > div {
+  padding: 6px 2px;
+  border-bottom: 1px dashed rgba(129, 150, 184, 0.18);
+}
+
+.bullish {
+  color: var(--bull);
+}
+
+.bearish {
+  color: var(--bear);
+}
+
+.chart-card {
+  min-height: 360px;
+}
+
+.chart-wrapper {
+  height: 320px;
+}
+
+.indicator-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.regime-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.regime-tags span {
+  border: 1px solid color-mix(in srgb, var(--accent), transparent 40%);
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 0.75rem;
+  color: #ffd289;
+  text-transform: capitalize;
+}
+
+.signal-card {
+  border-width: 2px;
+}
+
+.signal-card h2 {
+  margin: 0 0 4px;
+  font-family: "Space Grotesk", "Manrope", sans-serif;
+  font-size: 1.5rem;
+}
+
+.signal-card.bullish {
+  border-color: color-mix(in srgb, var(--bull), transparent 45%);
+}
+
+.signal-card.bearish {
+  border-color: color-mix(in srgb, var(--bear), transparent 45%);
+}
+
+.signal-type {
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-bottom: 5px;
+}
+
+.confidence {
+  font-size: 0.88rem;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+.signal-state {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-bottom: 6px;
+  text-transform: capitalize;
+}
+
+.signal-levels {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.signal-levels > div {
+  background: rgba(10, 19, 34, 0.6);
+  border: 1px solid var(--stroke);
+  border-radius: 10px;
+  padding: 7px;
+  display: grid;
+}
+
+.signal-levels span {
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+.reason,
+.ai-reason,
+.muted {
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.history-list {
+  display: grid;
+  gap: 8px;
+}
+
+.perf-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.history-item {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  gap: 8px;
+  align-items: center;
+  background: rgba(8, 15, 27, 0.52);
+  border: 1px solid var(--stroke);
+  border-radius: 10px;
+  padding: 8px;
+  font-size: 0.78rem;
+}
+
+@media (max-width: 1240px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .left-panel,
+  .right-panel,
+  .center-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .indicator-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
